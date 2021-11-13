@@ -1,5 +1,6 @@
 import Generative from 'generative-radio'
 import pieces from './pieces.json'
+import { duration } from 'duration-pretty'
 
 const gen = new Generative(pieces)
 
@@ -13,7 +14,8 @@ gen.debug = true
 
 gen.ontrigger = ({sound}) => {
 	if (sound) {
-		console.log(`					${sound.name} playing.`)
+		const formattedDuration = duration(sound.duration, 'seconds').format('HH:mm:ss:SSS')
+		console.log(`					Playing ${sound.name}, duration ${formattedDuration} `)
 	}
 }
 
